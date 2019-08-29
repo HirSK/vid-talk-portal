@@ -2,14 +2,14 @@ import {
     SERVICE_PAGE_LOADED,
     SERVICE_PAGE_UNLOADED,
     
-  } from '../constants/actionTypes';
+  } from '../actions/servicedata.actions';
   
-  export default (state = {}, action) => {
+  const serviceDataReducer =  (state = {}, action) => {
     switch (action.type) {
       case SERVICE_PAGE_LOADED:
         return {
           ...state,
-          services: action.payload[0].services
+          services: action.payload
         };
       case SERVICE_PAGE_UNLOADED:
         return {};
@@ -18,3 +18,4 @@ import {
     }
   };
   
+  export default serviceDataReducer;

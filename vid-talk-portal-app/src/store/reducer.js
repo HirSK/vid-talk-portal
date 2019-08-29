@@ -1,8 +1,10 @@
-import servicesList from './reducers/article';
+import serviceDataReducer from './reducers/servicedata';
+import userReducer from './reducers/userdata';
+import { combineReducers } from 'redux';
 
-import { routerReducer } from 'react-router-redux';
-
+//all reducers
 export default combineReducers({
-  servicesList,
-  router: routerReducer
+  services: serviceDataReducer,
+  users: userReducer
+  
 });
