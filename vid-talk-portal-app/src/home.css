@@ -1,23 +1,23 @@
 .banner {
-  color: #fff;
-  background-color: rgb(50, 156, 50);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-
-.logo-font {
-  font-family: titillium web,sans-serif;
-}
-
-.navbar-light .navbar-brand {
-  color: rgba(0,0,0,.8);
-}
-.navbar-brand {
-  font-family: titillium web,sans-serif;
-  font-size: 1.5rem !important;
-  padding-top: 0 !important;
-  margin-right: 2rem !important;
-  color: #5cb85c !important;
-}
+    color: #fff;
+    background-color: rgb(50, 156, 50);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  
+  .logo-font {
+    font-family: titillium web,sans-serif;
+  }
+  
+  .navbar-light .navbar-brand {
+    color: rgba(0,0,0,.8);
+  }
+  .navbar-brand {
+    font-family: titillium web,sans-serif;
+    font-size: 1.5rem !important;
+    padding-top: 0 !important;
+    margin-right: 2rem !important;
+    color: #5cb85c !important;
+  }

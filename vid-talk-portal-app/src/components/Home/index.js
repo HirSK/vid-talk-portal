@@ -4,15 +4,13 @@ import '../../home.css';
 import React from 'react';
 import {connect} from 'react-redux';
 
-const mapStateToProps = state => ({
-    appName: state.appName
-  });
+
 
   class Home extends React.Component{
       render(){
           return(
               <div className="home-page">
-                  <Banner appName={this.props.appName} />
+                  <Banner appName="banner" />
                     <div className="container-page">
                         <div className="row">
                             <MainView />
@@ -30,4 +28,9 @@ const mapStateToProps = state => ({
           );
       }
   }
-  export default connect(mapStateToProps, () => ({}))(Home);
+
+  const mapStateToProps = state => {
+    return state
+  }
+  
+  export default connect(mapStateToProps)(Home);
