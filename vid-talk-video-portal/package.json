@@ -1,5 +1,5 @@
 {
-  "name": "openvidu-insecure-react",
+  "name": "vid-talk-video-portal",
   "version": "2.11.0",
   "private": true,
   "dependencies": {
