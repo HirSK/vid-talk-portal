@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 
 
 const IntialStates = {
-    services: {name:'fukkkk'},
+    services: {name:'Service1'},
     users : []
 }
 
@@ -12,8 +12,8 @@ const middleware = [thunk]
 
 const store = createStore(
     reducer, IntialStates,
-    compose(applyMiddleware(...middleware),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-    
+    compose(applyMiddleware(...middleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())    
    );
 
 console.log(store.getState());

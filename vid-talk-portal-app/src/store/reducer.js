@@ -1,5 +1,5 @@
-import serviceDataReducer from './reducers/servicedata';
-import userReducer from './reducers/userdata';
+import serviceDataReducer from './reducers/service.reducer';
+import userReducer from './reducers/user.reducer';
 import { combineReducers } from 'redux';
 
 //all reducers
