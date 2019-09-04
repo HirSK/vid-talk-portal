@@ -2,13 +2,10 @@ import {
     UPDATE_USER
   } from '../actions/user.actions';
   
-  const userDataReducer =  (state = {}, action) => {
-    switch (action.type) {
+  const userDataReducer =  (state = {}, {type,payload}) => {
+    switch (type) {
       case  UPDATE_USER:
-        return {
-          ...state,
-          usersList: action.payload
-        };
+        return payload       
       
       default:
         return state;

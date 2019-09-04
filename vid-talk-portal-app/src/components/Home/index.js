@@ -1,36 +1,34 @@
-import Banner from './Banner';
-import MainView from './MainView';
-import '../../home.css';
+import Header from "../Header";
 import React from 'react';
 import {connect} from 'react-redux';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import Banner from "./Banner";
+import FeaturedPosts from "./FeaturedPosts";
+import MainView from "./MainView";
+import Footer from "../Footer";
 
 
+class Home extends React.Component{
+    render(){
+        return(
+            <React.Fragment>
+            <CssBaseline />
+            <Container maxWidth="lg">
+                <Header/>
+                <Banner/>
+                <FeaturedPosts/>
+                <MainView/>
+                <Footer/>
+            </Container>
 
-  class Home extends React.Component{
-      render(){
-          return(
-              <div className="home-page">
-                  <Banner appName="banner" />
-                    <div className="container-page">
-                        <div className="row">
-                            <MainView />
+            </React.Fragment>
+        );
+    }
+}
 
-                            <div className="col-md-3">
-                                <div className="sidebar">
+const mapStateToProps = state => {
+  return state
+}
 
-                                    <p>Popular Tags</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-              </div>
-          );
-      }
-  }
-
-  const mapStateToProps = state => {
-    return state
-  }
-  
-  export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home);
