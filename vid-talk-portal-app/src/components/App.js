@@ -2,47 +2,40 @@ import Header from './Header';
 import Home from './Home/index';
 import React from 'react'; 
 import {loadPageService} from '../store/actions/servicedata.actions'
-import fetch_user from '../store/actions/user.actions'
+import update_user  from '../store/actions/user.actions'
 import {connect} from 'react-redux';
 
 
 
-class App extends React.Component {   
+function App(props){   
+  
+  return (
+    <div>
+    <Home />
+    <button onClick={props.updateUser}>update</button>
+    <br/>
 
-
-  render() {
-    
-    return (
-        <div>
-          <Home />
-       <button onClick={this.props.fetchuser}>updateee</button>
-       <br/>
-
-       users : <button>Fetch users</button>
-       {
-       
-       }
-        </div>
-                    
-    );
-  }
+    users : <button onClick={props.updateUser}>Fetch users</button>
+    {
+      props.users.length ===0? <p>No user found</p>:
+      props.users.map(user => <p> {user.id} - {user.first_name} - {user.email}</p> )
+    }
+    </div>   
+  );
+  
 } 
-
-
-
-
 
 const mapStateToProps = state => {
   return {
-    service: state.service,
-    user : state.user
+    service: state.services,
+    users : state.users
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     loadService: () => {dispatch(loadPageService)},
-    fetchuser: () => {dispatch(fetch_user)}
+    updateUser: () => {dispatch(update_user)}
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App);
