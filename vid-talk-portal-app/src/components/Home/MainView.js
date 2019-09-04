@@ -1,24 +1,24 @@
-import SessionList from '../SessionList';
 import React from 'react';
 import {connect} from 'react-redux';
+import HomeContent from './HomeContent';
+import Sidebar from '../Sidebar';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
+const useStyles = makeStyles(theme => ({    
+    mainGrid: {
+        marginTop: theme.spacing(3),
+      }
+}));
 
 const MainView = props =>{
+    const classes = useStyles();
+
     return (
-        <div className="col-md-9">
-            <div className="feed-toggle">
-                <ul className="nav nav-pills outline-active">
-                    <li className="nav-item">
-                        <a
-                           href="#"
-                           className="nav-link active">My Sessions</a>
-                    </li>
-                </ul>
-            </div>
-            <SessionList
-              sessions={props.sessions}
-            />
-        </div>
+        <Grid container spacing={5} className={classes.mainGrid}>
+            <HomeContent/>
+            <Sidebar/>
+        </Grid>
     );
 }
 
@@ -26,4 +26,4 @@ const mapStateToProps = state => {
     return state
   }
   
-  export default connect(mapStateToProps)(MainView);
+export default connect(mapStateToProps)(MainView);

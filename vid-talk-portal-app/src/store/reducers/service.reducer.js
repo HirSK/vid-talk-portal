@@ -4,12 +4,12 @@ import {
     
   } from '../actions/servicedata.actions';
   
-  const serviceDataReducer =  (state = {}, action) => {
-    switch (action.type) {
+  const serviceDataReducer =  (state = {}, {type,payload}) => {
+    switch (type) {
       case SERVICE_PAGE_LOADED:
         return {
           ...state,
-          services: action.payload
+          services: payload
         };
       case SERVICE_PAGE_UNLOADED:
         return {};
