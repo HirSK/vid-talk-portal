@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,21 +19,22 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import userPostFetch from '../../store/actions/signup.actions'
 
 function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Your Website
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 
-const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles(theme => ({
     '@global': {
       body: {
         backgroundColor: theme.palette.common.white,
@@ -56,34 +59,76 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+class Signup extends Component {
 
-export default function SignUpFormDialog() {
-    const classes = useStyles();
+    makeStyles = theme => ({
+        '@global': {
+          body: {
+            backgroundColor: theme.palette.common.white,
+          },
+        },
+        paper: {
+          marginTop: theme.spacing(0),
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        },
+        avatar: {
+          margin: theme.spacing(1),
+          backgroundColor: theme.palette.secondary.main,
+        },
+        form: {
+          width: '100%', // Fix IE 11 issue.
+          marginTop: theme.spacing(2),
+        },
+        submit: {
+          margin: theme.spacing(3, 0, 2),
+        },
+    });
 
-    const [open, setOpen] = React.useState(false);
-  
-    function handleClickOpen() {
-      setOpen(true);
-    }
-  
-    function handleClose() {
-      setOpen(false);
-    }
+  state = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    open: false
+  }
+
+  handleClose = event => {
+    this.setState({open : false});
+  }
+
+  handleClickOpen = event => {
+    this.setState({open : true});
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.userPostFetch(this.state)
+  }
+
+  render() {
     return (
         <div>
-          <Button variant="outlined" size="small" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" size="small" color="primary" onClick={this.handleClickOpen}>
             SIGN UP
           </Button>
 
-          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Vid-Talk</DialogTitle>
             <DialogContent>  
                 {/* <DialogContentText></DialogContentText>             */}
                 <Container component="main" maxWidth="xs" >
                     <CssBaseline />
-                    <div className={classes.paper}>
+                    <div >
 
-                        <Avatar className={classes.avatar}>
+                        <Avatar>
                         <LockOutlinedIcon />
                         </Avatar>
 
@@ -91,7 +136,7 @@ export default function SignUpFormDialog() {
                         Sign up
                         </Typography>
 
-                        <form className={classes.form} Validate>
+                        <form  Validate>
                         <Grid container spacing={1} maxWidth="xs">
                             <Grid item xs={12} sm={6}>
                               <TextField
@@ -102,6 +147,8 @@ export default function SignUpFormDialog() {
                                   fullWidth
                                   id="firstName"
                                   label="First Name"
+                                  value={this.state.firstName}
+                                  onChange={this.handleChange}
                                   autoFocus
                               />
                             </Grid>
@@ -114,6 +161,8 @@ export default function SignUpFormDialog() {
                                   label="Last Name"
                                   name="lastName"
                                   autoComplete="lname"
+                                  value={this.state.lastName}
+                                  onChange={this.handleChange}
                               />
                             </Grid>
                             <Grid item xs={12}>
@@ -125,6 +174,8 @@ export default function SignUpFormDialog() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                value={this.state.email}
+                                onChange={this.handleChange}
                             />
                             </Grid>
                             <Grid item xs={12}>
@@ -137,6 +188,8 @@ export default function SignUpFormDialog() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
                             />
                             </Grid>
                             <Grid item xs={12}>
@@ -166,7 +219,8 @@ export default function SignUpFormDialog() {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            className={classes.submit}
+                            onClick={this.handleSubmit}
+                           
                         >
                             Sign Up
                         </Button>
@@ -187,12 +241,20 @@ export default function SignUpFormDialog() {
                 </Container>
             </DialogContent>
             <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={this.handleSubmit} color="primary">
                 Cancel
             </Button>
             
             </DialogActions>
           </Dialog>
-    </div>
-  );
+        </div>
+     
+    )
+  }
 }
+
+const mapDispatchToProps = dispatch => ({
+  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
+})
+
+export default connect(null, mapDispatchToProps)(Signup);

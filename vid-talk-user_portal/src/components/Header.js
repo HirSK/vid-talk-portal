@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import SignUpFormDialog from './Users/SignUp';
+import Signup from './Users/SignUP';
 import LoginFormDialog from './Users/Login';
 import Grid from '@material-ui/core/Grid';
 
@@ -52,7 +52,7 @@ const Header = props =>{
             </IconButton>
                         
             <LoginFormDialog/>
-            <SignUpFormDialog/>           
+            <Signup/>           
                         
         </Toolbar> 
     );
